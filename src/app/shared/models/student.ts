@@ -1,7 +1,7 @@
 
 
 export interface Student{
-    id: number,
+    id: string,
     name : string;
     surname: string;
     fileNumber: number;

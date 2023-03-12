@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/shared/models/teacher';
 import { TeachersService } from 'src/app/teachers/services/teachers.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-teachers-list',
@@ -9,17 +10,16 @@ import { TeachersService } from 'src/app/teachers/services/teachers.service';
 })
 export class TeachersListComponent implements OnInit {
   teachers !: Teacher[]
-  teachers$ !: Promise<Teacher[]>;
+  teachers$ !: Observable<Teacher[]>;
   filter !: string;
 
-  constructor(
-    private teachersService: TeachersService
-  ){
 
-  }
+  constructor(
+    private teacherService: TeachersService,
+  ){}
 
   ngOnInit() {
-    this.teachers$ = this.teachersService.getTeachers()
+    this.teachers$ = this.teacherService.getTeachers()
   }
 
 

@@ -81,8 +81,10 @@ export class AddModalComponent {
       subject: this.addStudentForm.value.subject
     }
 
-    this.studentService.addStudent(newStudent)
-    this.dialogRef.close()
+    this.studentService.addStudent(newStudent).subscribe(()=>{
+      this.dialogRef.close()
+    })
+    
   }
   
 }

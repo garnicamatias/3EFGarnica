@@ -9,6 +9,7 @@ import { StudentsTableComponent } from './components/students-table/students-tab
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentsService } from './services/students.service';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -26,7 +27,8 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    StudentsRoutingModule
+    StudentsRoutingModule,
+    CoreModule
   ],
   providers: [StudentsService]
 })

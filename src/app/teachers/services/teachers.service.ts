@@ -1,55 +1,30 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { env } from 'src/enviroment/enviroment';
 import { Teacher } from '../../shared/models/teacher';
 
+@Injectable({
+  providedIn: 'root'
+})
 
 export class TeachersService {
 
-  private teachers : Teacher[] = [
-    {
-      id: 0,
-      name : 'Luis',
-      surname: 'Hoffman',
-      fileNumber: 2546,
-      subject: 'Física',
-      img: '../../../assets/img/hoffmanLuis.jpg'
-    },
-    {
-      id: 1,
-      name : 'Malena',
-      surname: 'Suarez',
-      fileNumber: 2056,
-      subject: 'Diseño',
-      img: '../assets/img/suarezMalena.jpg'
-
-    },
-    {
-      id: 2,
-      name : 'Federico',
-      surname: 'Lopez',
-      fileNumber: 1755,
-      subject: 'Matemática',
-      img: '../assets/img/lopezFederico.jpg'
-
-    },
-    {
-      id: 3,
-      name : 'Lorena',
-      surname: 'Gamboa',
-      fileNumber: 3200,
-      subject: 'Inglés',
-      img: '../assets/img/gamboaLorena.jpg'
-
-    }
-  ]
-
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ){
     
-   }
+  }
 
-   getTeachers() : Promise<Teacher[]>{
+  getTeachers(): Observable<Teacher[]>{
+    return this.http.get<Teacher[]>(`${env.apiURL}/teachers`)
+  }
 
-    return new Promise((resolve, reject) =>{
-       resolve(this.teachers)
-    })
-   }
+  //  getTeachers() : Promise<Teacher[]>{
+
+  //   return new Promise((resolve, reject) =>{
+  //      resolve(this.teachers)
+  //   })
+  //  }
     
 }

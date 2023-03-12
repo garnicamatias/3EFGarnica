@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignupLayoutComponent } from './signup-layout.component';
+import { SignupFormComponent } from '../signup-form/signup-form.component';
+import { MaterialModule } from 'src/app/shared/material.module';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SignupLayoutComponent', () => {
   let component: SignupLayoutComponent;
@@ -8,7 +12,8 @@ describe('SignupLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupLayoutComponent ]
+      declarations: [ SignupLayoutComponent, SignupFormComponent ],
+      imports: [MaterialModule, RouterModule, RouterTestingModule]
     })
     .compileComponents();
 

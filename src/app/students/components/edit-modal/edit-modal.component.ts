@@ -82,13 +82,11 @@ export class EditModalComponent {
       subject: this.editStudentForm.value.subject
     }
 
-    this.studentService.editStudent(newStudent)
-    const dialogRef = this.dialog.closeAll()
+    this.studentService.editStudent(newStudent).subscribe(()=>{
+      this.dialogRef.close()
+    })
   }
-  
-  closeModal(){
-    const dialogRef = this.dialog.closeAll()
-  }
+
 
 }
 

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentsService } from 'src/app/students/services/students.service';
 import { Student } from '../../../shared/models/student';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { AddModalComponent } from '../add-modal/add-modal.component';
-import { Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
@@ -19,6 +19,8 @@ export class StudentsTableComponent implements OnInit{
   dataSource !: MatTableDataSource<Student> 
   dataColumns: string[] = ['name', 'fileNumber', 'age', 'isActive', 'gender', 'subject','actions']
   suscription !: Subscription;
+
+  students!: Student[];
 
 
   constructor(
@@ -39,21 +41,29 @@ export class StudentsTableComponent implements OnInit{
     this.suscription.unsubscribe();
   }
 
+  refresh() {
+    this.studentsService.getStudents().subscribe((data: Student[]) => {
+    this.dataSource.data = data;})
+  }
+
   deleteStudentDialog(student : Student){
-    this.dialog.open(DeleteDialogComponent, { data: student })
+    this.dialog.open(DeleteDialogComponent, { data: student }).beforeClosed().subscribe(()=>{
+      this.refresh()
+    })
   }
 
   editStudent = (student : Student) => {
-    this.dialog.open(EditModalComponent, { data: student })
+    this.dialog.open(EditModalComponent, { data: student }).beforeClosed().subscribe(()=>{
+      this.refresh()
+    })
   }
 
   openAddModal() {
-    const dialogRef = this.dialog.open(AddModalComponent)
+    this.dialog.open(AddModalComponent).beforeClosed().subscribe(()=>{
+      this.refresh()
+    })
   }
 
-  openDeleteDialog() {
-    const dialogRef = this.dialog.open(DeleteDialogComponent)
-  }
 
 }
 

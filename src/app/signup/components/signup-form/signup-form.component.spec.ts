@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/shared/material.module';
+import { RouterTestingModule } from "@angular/router/testing";
 
 import { SignupFormComponent } from './signup-form.component';
 
@@ -8,7 +11,8 @@ describe('SignupFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupFormComponent ]
+      declarations: [ SignupFormComponent ],
+      imports: [MaterialModule, RouterModule, RouterTestingModule]
     })
     .compileComponents();
 

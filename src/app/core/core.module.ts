@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,7 +14,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   imports: [
     CommonModule,
     CoreRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
+  ],
+  exports:[
+    HttpClientModule
   ]
 })
 export class CoreModule { }
