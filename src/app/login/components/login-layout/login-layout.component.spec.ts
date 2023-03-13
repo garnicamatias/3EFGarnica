@@ -6,7 +6,9 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('LoginLayoutComponent', () => {
   let component: LoginLayoutComponent;
@@ -15,7 +17,8 @@ describe('LoginLayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginLayoutComponent, LoginFormComponent ],
-      imports: [MaterialModule, RouterModule, RouterTestingModule, FormsModule, ReactiveFormsModule]
+      imports: [MaterialModule, RouterModule, RouterTestingModule, FormsModule, ReactiveFormsModule, HttpClientTestingModule],
+      providers: [AuthenticationService]
     })
     .compileComponents();
 

@@ -1,5 +1,5 @@
-import { User } from './user';
+import { LoginUser } from './loginUser';
 export interface Session {
     isSessionActive : boolean,
-    activeUser ?: User
+    activeUser ?: LoginUser
 }

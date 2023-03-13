@@ -1,7 +1,10 @@
 export interface User {
-    // name : string,
-    // surname: string,
+    id : string,
+    name : string,
+    surname: string,
     email: string,
     pass: string,
-    isAdmin: boolean
+    adress : string,
+    isAdmin: boolean,
+    phone : number
 }
